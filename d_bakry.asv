@@ -1,0 +1,16 @@
+a=2^2;                          % multiplication factor.
+b=5^5;
+M=(2^31)-1;                     % modulus of the generator.
+c=0;                            % increment factor.
+N=1e6;                          % No. of data samples
+
+x(1,1)=38;                      % initial seed.
+for i=1:N
+x(1,i+1)=mod((a+(b-a)*x(1,i)+c),M);
+end
+U=x/M;
+%% pdf test
+[y1,x1]=hist(U,100);
+dx=(x1(2)-x1(1));
+h=(y1/N)/dx;
+bar(x1,h);title('PDF for LCG)')

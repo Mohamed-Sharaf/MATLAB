@@ -1,0 +1,27 @@
+clear;clc;close all;
+%%
+m=4;
+A=rand(m,m);
+B=rand(m,1);
+C=[A B];
+
+for k=1:m-1
+    for h=k+1:m
+        C(h,:)=C(h,:)-C(k,:)*C(h,k)/C(k,k);
+    end
+end
+R=zeros(m,1);
+s=0;
+for g=m:-1:1
+    R(m,1)=(C(g,m+1)-s)/C(g,g);
+    s=0;
+    for w=g:m
+        s=s+C(g-1,w)*R(w,1);
+    end
+end
+dis
+
+
+
+
+
